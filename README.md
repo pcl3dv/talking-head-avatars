@@ -1,10 +1,10 @@
 # Speech-Driven 3D Talking Head · 论文研究系列
 
-> 系统梳理 **MeanTalker / PSTalker / SRP-Talker** 三篇语音驱动 3D 数字人方向论文的方法、贡献与实验成果。
+> 系统梳理 **MeanTalker / PSTalker / SRP-Talker** 语音驱动 3D 数字人。
 
 ![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)
 
-本系列围绕**语音驱动 3D 面部动画与数字人合成**，由同一研究团队（北京大学（深圳）· 鹏城实验室）完成。三项工作沿“**高效生成 → 几何可控 → 个性化真实感**”逐层递进：
+本系列围绕**语音驱动 3D 面部动画与数字人合成**，三项工作沿“**高效生成 → 几何可控 → 个性化真实感**”逐层递进：
 
 | # | 论文 | 会议 | 核心问题 | 核心方案 | 关键结果 |
 |---|------|------|----------|----------|----------|
@@ -29,6 +29,7 @@ Mean Flow 单步生成        →       点形状 + 刚柔耦合        →     
 **MeanTalker: Efficient and Expressive Speech-Driven 3D Facial Animation via Geometric-Aware Mean Flow**
 
 - **作者**：Zhongyuan Zhao, Zhihao Li, Qing Li, Leidong Fan, Kanglin Liu
+- **通讯作者**： Kanglin Liu
 - **机构**：School of Electronic and Computer Engineering, Peking University, Shenzhen；Pengcheng Laboratory
 
 ![MeanTalker 总体架构](assets/img/meantalker-arch.png)
@@ -77,6 +78,7 @@ Mean Flow 单步生成        →       点形状 + 刚柔耦合        →     
 **PSTalker: Realistic 3D Talking Head Synthesis via a Semantic-Aware Audio-Driven Point-Based Shape**
 
 - **作者**：Zhongyuan Zhao, Qing Li, Kanglin Liu
+-  **通讯作者**： Kanglin Liu
 - **机构**：School of Electronic and Computer Engineering, Peking University；Pengcheng Laboratory
 - **DOI**：[10.1109/ICASSP55912.2026.11463938](https://doi.org/10.1109/ICASSP55912.2026.11463938)
 
@@ -124,6 +126,7 @@ Mean Flow 单步生成        →       点形状 + 刚柔耦合        →     
 **SRP-Talker: Realistic Person-specific Talking Head Synthesis via Semantics-consistent Reconstruction Priors**
 
 - **作者**：Zhongyuan Zhao, Ying Zhou, Dingwei Liu, Qing Li, Zhenyu Bao, Kanglin Liu
+-  **通讯作者**： Kanglin Liu
 - **机构**：Peking University；South China University of Technology；Pengcheng Laboratory
 
 ![SRP-Talker 总体架构](assets/img/srptalker-arch.png)
@@ -167,10 +170,7 @@ Mean Flow 单步生成        →       点形状 + 刚柔耦合        →     
 
 ---
 
-## 数据与素材说明
 
-- 论文文字信息（摘要、方法、贡献、指标、对比表、数据集）均依据三篇论文原文整理，指标数值与论文表格一致。
-- 架构图由论文 PDF 对应页面裁剪渲染得到，版权归原论文作者所有，仅用于学术展示；如公开发布请遵循原论文与出版方的使用条款。
 
 ## License
 
