@@ -1,0 +1,16 @@
+# OS / editor
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+.idea/
+.vscode/
+
+# Dependencies (if extended later)
+node_modules/
+npm-debug.log*
+
+# Build output
+dist/
+build/
+.cache/
