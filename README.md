@@ -1,18 +1,14 @@
-# Speech-Driven 3D Talking Head · 论文研究系列展示
+# Speech-Driven 3D Talking Head · 论文研究系列
 
-> 一个可直接部署到 **GitHub Pages** 的纯静态论文展示站点，系统梳理 **MeanTalker / PSTalker / SRP-Talker** 三篇语音驱动 3D 数字人方向论文的方法、贡献与实验结果。
+> 系统梳理 **MeanTalker / PSTalker / SRP-Talker** 三篇语音驱动 3D 数字人方向论文的方法、贡献与实验成果。
 
-![HTML5](https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=white)
-![CSS3](https://img.shields.io/badge/CSS3-1572B6?logo=css3&logoColor=white)
-![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=black)
-![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-deploy-2088FF?logo=githubpages&logoColor=white)
 ![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)
 
 ---
 
 ## 项目简介
 
-本项目围绕**语音驱动 3D 面部动画与数字人合成**，展示同一研究团队（北京大学（深圳）· 鹏城实验室）的三篇代表性论文。三项工作沿“**高效生成 → 几何可控 → 个性化真实感**”逐层递进：
+本系列围绕**语音驱动 3D 面部动画与数字人合成**，展示同一研究团队（北京大学（深圳）· 鹏城实验室）的三篇代表性论文。三项工作沿“**高效生成 → 几何可控 → 个性化真实感**”逐层递进：
 
 | # | 论文 | 会议 | 核心问题 | 核心方案 | 关键结果 |
 |---|------|------|----------|----------|----------|
@@ -34,90 +30,40 @@ Mean Flow 单步生成        →       点形状 + 刚柔耦合        →     
 
 ---
 
-## 目录结构
+## 论文成果
 
-```
-talking-head-papers/
-├── index.html                  # 站点主页面（GitHub 风格导航 + 学术主页）
-├── README.md                   # 本文件
-├── LICENSE                     # MIT 许可证
-├── .gitignore
-└── assets/
-    ├── css/
-    │   └── style.css           # 全部样式（响应式、GitHub 风格主题）
-    ├── js/
-    │   └── main.js             # 数据驱动渲染 + 图片灯箱交互
-    ├── data/
-    │   ├── papers.json         # 三篇论文结构化数据（单一数据源）
-    │   └── papers.js           # 同名 JS 包装，支持 file:// 双击直接预览
-    └── img/                    # 从论文裁剪的架构图（高清）
-        ├── meantalker-teaser.png
-        ├── meantalker-arch.png
-        ├── pstalker-arch.png
-        └── srptalker-arch.png
-```
+### 1. MeanTalker（ECCV）
 
-所有论文内容均由 `assets/data/papers.json` 驱动，**修改内容只需编辑该 JSON**，页面自动渲染，无需改动 HTML。
+- **任务**：语音驱动 3D 面部动画，在保证表现力的同时实现实时推理。
+- **核心方法**：
+  - **DTDT 双时间去噪 Transformer**：交错双时间编码（仿真时间 t 与参考时间 r），支持瞬时速度到平均速度的渐进式课程学习，稳定 Mean Flow 训练；掩码交叉注意力强制音素-唇形逐帧同步。
+  - **GATL 几何感知轨迹学习**：隐式恢复端点并施加显式顶点约束，将潜在速度误差经 Manifold-GVC 投影到 FLAME 表面流形，保证流形有效与路径平直。
+- **成果**：单步生成（NFE=1），RTF 低至 **0.004**，较迭代扩散模型加速 **200 倍以上**；TFHP 基准上 LVE **7.88 mm**、MVE **0.79 mm**，唇形同步精度达到 SOTA。
 
----
+### 2. PSTalker（ICASSP 2026）
 
-## 本地预览
+- **任务**：高保真 3D 说话人头合成，解决音唇错位、头-躯干接缝伪影与可控性不足。
+- **核心方法**：
+  - **SAPS 语义感知点形状模型**：在 FLAME 网格表面及沿法线方向语义采样，统一建模面部与非面部（含头、躯干）结构，新增牙齿三角面。
+  - **RFC 刚柔耦合模型**：音频驱动（唇）与表情驱动（眼）区域分离，面部偏移在规范空间预测后经 LBS 与刚性姿态耦合，再实例化为 3D 高斯渲染。
+- **成果**：512×512 分辨率超 **30 FPS**；自驱动设置 LMD **2.570**、AUE **0.365**、Sync-C **7.890**、FID **8.178**，跨驱动泛化显著优于基线，并支持以往方法不具备的灵活姿态控制。
+- **DOI**：[10.1109/ICASSP55912.2026.11463938](https://doi.org/10.1109/ICASSP55912.2026.11463938)
 
-### 方式一：直接打开（零依赖）
+### 3. SRP-Talker（ICME 2026）
 
-双击 `index.html` 即可在浏览器中查看。页面通过 `papers.js` 读取数据，无需本地服务器。
-
-### 方式二：本地服务器（推荐，与线上环境一致）
-
-```bash
-# Python 3
-python -m http.server 8000
-
-# 或 Node.js
-npx serve .
-```
-
-然后访问 <http://localhost:8000>。
-
----
-
-## 部署到 GitHub Pages
-
-```bash
-# 1. 在 GitHub 新建仓库，例如 talking-head-papers
-git init
-git add .
-git commit -m "feat: speech-driven 3D talking head paper showcase"
-git branch -M main
-git remote add origin https://github.com/<your-username>/talking-head-papers.git
-git push -u origin main
-
-# 2. 开启 Pages
-#    仓库 Settings → Pages → Source 选择 "Deploy from a branch"
-#    Branch 选择 main / (root) → Save
-# 3. 约 1 分钟后访问
-#    https://<your-username>.github.io/talking-head-papers/
-```
-
-也可使用 GitHub Actions 的 **Pages: GitHub Pages Deployment** 工作流进行部署。
+- **任务**：个性化 3D 说话人头合成，以重建先验正则化音频驱动生成。
+- **核心方法（三阶段）**：
+  - **语义一致重建**：基于 Gaussian Grouping 建立参考模型，赋予高斯原语细粒度语义，输出确定性运动与语义先验。
+  - **重建引导运动对齐**：几何对齐（位置 + 张口度）与 KL 语义一致性约束，抑制抖动、语义漂移与音唇错位。
+  - **语义引导修复**：以皮肤、唇、口腔、边界四类语义掩码为条件，轻量 U-Net 预测残差，消除接缝与口腔伪影。
+- **成果**：RTX 3090 约 **31 FPS**，三阶段训练仅约 **2.6 小时**；自驱动 PSNR **31.887**、LPIPS **0.040**、LMD **2.550**、Sync-C **8.106**，音频驱动结果逼近重建上限（Sync-C 8.150）。
 
 ---
 
 ## 数据与素材说明
 
 - 论文文字信息（摘要、方法、贡献、指标、对比表、数据集）均依据三篇论文原文整理，指标数值与论文表格一致。
-- `assets/img/` 中的架构图由论文 PDF 对应页面裁剪渲染得到，版权归原论文作者所有，仅用于学术展示；如公开发布请遵循原论文与出版方的使用条款。
-- PSTalker 论文 DOI：[10.1109/ICASSP55912.2026.11463938](https://doi.org/10.1109/ICASSP55912.2026.11463938)。
-- 如需补充论文官方链接/代码仓库地址，编辑 `papers.json` 中对应论文的 `links` 字段即可。
-
-## 自定义指南
-
-| 需求 | 修改位置 |
-|------|----------|
-| 增删论文、修改摘要/指标 | `assets/data/papers.json`（同步更新 `papers.js`） |
-| 主题配色 | `style.css` 顶部 `:root` CSS 变量 |
-| 站点标题/导航 | `index.html` |
-| 版权持有人 | `LICENSE` 与页脚 |
+- 架构图由论文 PDF 对应页面裁剪渲染得到，版权归原论文作者所有，仅用于学术展示；如公开发布请遵循原论文与出版方的使用条款。
 
 ---
 
