@@ -1,4 +1,4 @@
-# Speech-Driven 3D Talking Head · 论文研究系列
+# Talking Head Avatars · 论文研究系列
 
 > 系统梳理 **MeanTalker / PSTalker / SRP-Talker** 语音驱动 3D 数字人。
 
