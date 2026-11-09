@@ -1,6 +1,6 @@
 # Talking Head Avatars · 论文研究系列
 
-> 系统梳理 **MeanTalker / PSTalker / SRP-Talker** 语音驱动 3D 数字人。
+>  **MeanTalker / PSTalker / SRP-Talker** 语音驱动 3D 数字人。
 
 ![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)
 
@@ -8,7 +8,7 @@
 
 | # | 论文 | 会议 | 核心问题 | 核心方案 | 关键结果 |
 |---|------|------|----------|----------|----------|
-| 1 | **MeanTalker** | ECCV | 扩散模型迭代采样慢，无法实时部署 | 基于 Mean Flow 的单步生成 + DTDT 双时间课程 + GATL 几何感知轨迹学习 | RTF **0.004**，NFE=1，较扩散模型加速 **200×+**，LVE 7.88 mm |
+| 1 | **MeanTalker** | ECCV 2026 | 扩散模型迭代采样慢，无法实时部署 | 基于 Mean Flow 的单步生成 + DTDT 双时间课程 + GATL 几何感知轨迹学习 | RTF **0.004**，NFE=1，较扩散模型加速 **200×+**，LVE 7.88 mm |
 | 2 | **PSTalker** | ICASSP 2026 | 头-躯干接缝伪影、音唇错位、姿态不可控 | SAPS 语义感知点形状 + RFC 刚柔耦合（LBS） | 512×512 超 **30 FPS**，LMD 2.570，Sync-C 7.890，支持姿态控制 |
 | 3 | **SRP-Talker** | ICME 2026 | 像素级监督不足导致个性化音唇错位与解耦伪影 | 语义一致重建先验 + 运动对齐 + 语义引导修复（三阶段） | **~31 FPS**，PSNR 31.887，Sync-C 8.106 逼近重建上限 8.150 |
 
